@@ -1,5 +1,11 @@
 fastapi
 uvicorn
 python-multipart
-python-dotenv  
+python-dotenv
 motor
+pymongo
+passlib
+python-jose
+PyJWT
+email-validator
+bcrypt
