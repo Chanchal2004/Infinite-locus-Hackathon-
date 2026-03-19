@@ -4,9 +4,10 @@ python-multipart
 python-dotenv
 motor
 pymongo
-passlib
+passlib[bcrypt]
 python-jose
 PyJWT
 email-validator
 bcrypt
-qrcode  
+qrcode
+pillow
