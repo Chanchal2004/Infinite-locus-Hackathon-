@@ -9,3 +9,4 @@ python-jose
 PyJWT
 email-validator
 bcrypt
+qrcode  
