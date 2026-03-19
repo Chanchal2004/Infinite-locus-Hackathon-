@@ -12,3 +12,4 @@ bcrypt
 qrcode
 pillow
 aiofiles
+resend
