@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { 
     Calendar, 
     LayoutDashboard, 
@@ -12,7 +11,7 @@ import {
     LogOut, 
     User,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../components/ui/button';
 
 export const Sidebar = () => {
     const { user, logout } = useAuth();
@@ -42,7 +41,6 @@ export const Sidebar = () => {
 
     return (
         <aside className="sidebar" data-testid="sidebar">
-            {/* Logo */}
             <div style={{
                 padding: '24px',
                 borderBottom: '1px solid rgba(139, 92, 246, 0.15)',
@@ -72,7 +70,6 @@ export const Sidebar = () => {
                 </NavLink>
             </div>
 
-            {/* Nav links */}
             <nav style={{ padding: '16px 0', flex: 1 }}>
                 <p style={{
                     fontSize: '0.65rem',
@@ -97,7 +94,6 @@ export const Sidebar = () => {
                 ))}
             </nav>
 
-            {/* User section */}
             <div style={{
                 padding: '16px',
                 borderTop: '1px solid rgba(139, 92, 246, 0.15)',
@@ -157,14 +153,6 @@ export const Sidebar = () => {
                         fontSize: '0.85rem',
                         cursor: 'pointer',
                         transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => {
-                        e.currentTarget.style.background = 'rgba(248,113,113,0.1)';
-                        e.currentTarget.style.color = '#f87171';
-                    }}
-                    onMouseLeave={e => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = 'var(--text-muted)';
                     }}
                 >
                     <LogOut className="w-4 h-4" />
