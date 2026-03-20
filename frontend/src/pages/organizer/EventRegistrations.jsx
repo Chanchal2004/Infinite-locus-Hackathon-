@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { eventApi, registrationApi } from '@/lib/api';
 import { TopNav } from '@/components/layout/TopNav';
@@ -25,11 +25,7 @@ export default function EventRegistrations() {
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchData();
-    }, [id]);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
             const [eventRes, regsRes] = await Promise.all([
                 eventApi.getOne(id),
@@ -43,7 +39,11 @@ export default function EventRegistrations() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [id]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
     const exportToCSV = () => {
         const headers = ['Name', 'Email', 'Registered At'];
