@@ -1,113 +1,7 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { Calendar, Clock, MapPin, Users, Tag } from 'lucide-react';
-// import { Badge } from '@/components/ui/badge';
-// import { format } from 'date-fns';
-
-// const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
-// export const EventCard = ({ event }) => {
-//     const seatsLeft = event.max_participants - event.current_participants;
-//     const seatsPercentage = (event.current_participants / event.max_participants) * 100;
-
-//     const getSeatsClass = () => {
-//         if (seatsLeft === 0) return 'seats-full';
-//         if (seatsPercentage >= 80) return 'seats-low';
-//         return 'seats-available';
-//     };
-
-//     const getStatusBadge = () => {
-//         const statusClasses = {
-//             upcoming: 'status-upcoming',
-//             ongoing: 'status-ongoing',
-//             completed: 'status-completed',
-//         };
-//         return statusClasses[event.status] || 'status-upcoming';
-//     };
-
-//     const formatEventDate = (dateStr) => {
-//         try {
-//             return format(new Date(dateStr), 'EEE, MMM d, yyyy');
-//         } catch {
-//             return dateStr;
-//         }
-//     };
-
-//     const bannerUrl = event.banner_url 
-//         ? (event.banner_url.startsWith('http') ? event.banner_url : `${BACKEND_URL}${event.banner_url}`)
-//         : 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop';
-
-//     return (
-//         <Link to={`/events/${event.id}`} className="block" data-testid={`event-card-${event.id}`}>
-//             <article className="event-card overflow-hidden">
-//                 <div className="relative h-40 overflow-hidden">
-//                     <img
-//                         src={bannerUrl}
-//                         alt={event.title}
-//                         className="w-full h-full object-cover"
-//                         onError={(e) => {
-//                             e.target.src = 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop';
-//                         }}
-//                     />
-//                     <div className="absolute top-3 left-3">
-//                         <Badge className={`${getStatusBadge()} border-0 capitalize`}>
-//                             {event.status}
-//                         </Badge>
-//                     </div>
-//                     <div className="absolute top-3 right-3">
-//                         <Badge variant="secondary" className="bg-white/90 text-slate-700">
-//                             <Tag className="w-3 h-3 mr-1" />
-//                             {event.category}
-//                         </Badge>
-//                     </div>
-//                 </div>
-
-//                 <div className="p-5">
-//                     <h3 className="text-lg font-semibold text-slate-800 mb-2 line-clamp-1" style={{ fontFamily: 'Barlow Condensed, sans-serif' }}>
-//                         {event.title}
-//                     </h3>
-//                     <p className="text-sm text-slate-500 mb-4 line-clamp-2">
-//                         {event.description}
-//                     </p>
-
-//                     <div className="space-y-2 text-sm">
-//                         <div className="flex items-center gap-2 text-slate-600">
-//                             <Calendar className="w-4 h-4 text-blue-500" />
-//                             <span>{formatEventDate(event.date)}</span>
-//                         </div>
-//                         <div className="flex items-center gap-2 text-slate-600">
-//                             <Clock className="w-4 h-4 text-blue-500" />
-//                             <span>{event.time}</span>
-//                         </div>
-//                         <div className="flex items-center gap-2 text-slate-600">
-//                             <MapPin className="w-4 h-4 text-blue-500" />
-//                             <span className="truncate">{event.location}</span>
-//                         </div>
-//                     </div>
-
-//                     <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-//                         <div className="flex items-center gap-2">
-//                             <Users className="w-4 h-4 text-slate-400" />
-//                             <span className={`text-sm ${getSeatsClass()}`}>
-//                                 {seatsLeft === 0 ? 'Full' : `${seatsLeft} seats left`}
-//                             </span>
-//                         </div>
-//                         <div className="text-xs text-slate-400">
-//                             {event.location_type === 'online' ? 'Online' : 'In-person'}
-//                         </div>
-//                     </div>
-//                 </div>
-//             </article>
-//         </Link>
-//     );
-// };
-
-// export default EventCard;
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin, Users, Tag } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '../components/ui/badge';
 import { format } from 'date-fns';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -146,7 +40,6 @@ export const EventCard = ({ event }) => {
     return (
         <Link to={`/events/${event.id}`} style={{ display: 'block', textDecoration: 'none' }} data-testid={`event-card-${event.id}`}>
             <article className="event-card">
-                {/* Banner */}
                 <div style={{ position: 'relative', height: 160, overflow: 'hidden' }}>
                     <img
                         src={bannerUrl}
@@ -156,7 +49,6 @@ export const EventCard = ({ event }) => {
                             e.target.src = 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop';
                         }}
                     />
-                    {/* Gradient overlay */}
                     <div style={{
                         position: 'absolute',
                         inset: 0,
@@ -181,7 +73,6 @@ export const EventCard = ({ event }) => {
                     </div>
                 </div>
 
-                {/* Content */}
                 <div style={{ padding: '16px 18px 18px' }}>
                     <h3 style={{
                         fontFamily: 'Barlow Condensed, sans-serif',
@@ -211,8 +102,8 @@ export const EventCard = ({ event }) => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 7, fontSize: '0.8rem' }}>
                         {[
                             { Icon: Calendar, text: formatEventDate(event.date) },
-                            { Icon: Clock,    text: event.time },
-                            { Icon: MapPin,   text: event.location },
+                            { Icon: Clock, text: event.time },
+                            { Icon: MapPin, text: event.location },
                         ].map(({ Icon, text }, i) => (
                             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)' }}>
                                 <Icon style={{ width: 13, height: 13, color: 'var(--purple-primary)', flexShrink: 0 }} />
